@@ -40,55 +40,25 @@
     .weekend { background-color: #fafafa; color: #b2bec3; }
 
         /* Resaltado del día actual */
-    .today-cell {
-        background-color: #fff176 !important;
-        box-shadow: inset 0 0 0 2px #f57f17;
-        font-weight: bold;
+        /* Resaltado del número de día actual en el encabezado */
+    .today-header {
         position: relative;
-    }
-    
-    .today-cell.shift-M {
-        background-color: #fff176 !important;
-        color: #0d47a1;
-    }
-    
-    .today-cell.shift-T {
-        background-color: #fff176 !important;
-        color: #2e7d32;
-    }
-    
-    .today-cell.shift-V {
-        background-color: #fff176 !important;
-        color: #4a148c;
-    }
-    
-    .today-cell.shift-F {
-        background-color: #fff176 !important;
-        color: #d63031;
-    }
-    
-    .today-cell.shift-B {
-        background-color: #fff176 !important;
-        color: #bf360c;
-    }
-    
-    .today-cell.weekend {
-        background-color: #fff176 !important;
-        color: #b2bec3;
-    }
-        /* Resaltado solo del número del día actual */
-    .today-number {
         display: inline-block;
-        background-color: #f57f17;
+    }
+    
+    .today-header span {
+        display: inline-block;
+        background-color: #ff9800;
         color: white !important;
         border-radius: 50%;
-        width: 18px;
-        height: 18px;
-        line-height: 18px;
+        width: 22px;
+        height: 22px;
+        line-height: 22px;
         text-align: center;
         font-weight: bold;
-        font-size: 7.5pt;
-        padding: 1px;
+        font-size: 8.5pt;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
     }
 </style>
 </head>
@@ -318,11 +288,11 @@
 </div>
 
 <script>
-    // Función para resaltar solo el número del día actual
-    function highlightTodayNumber() {
+    // Función para resaltar el número del día actual en el encabezado de la tabla
+    function highlightTodayHeader() {
         const today = new Date();
         const currentYear = today.getFullYear();
-        const currentMonth = today.getMonth();
+        const currentMonth = today.getMonth(); // 0-11
         const currentDay = today.getDate();
         
         const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 
@@ -350,21 +320,17 @@
             
             // Si es el mes y año actual
             if (blockMonth === currentMonth && blockYear === currentYear) {
-                const rows = block.querySelectorAll('tbody tr');
+                // Buscar el <th> que contiene el número del día actual
+                const headers = block.querySelectorAll('thead th');
                 
-                rows.forEach(row => {
-                    const cells = row.querySelectorAll('td');
-                    // Recorrer desde índice 1 (primer día del mes)
-                    for (let i = 1; i < cells.length; i++) {
-                        const dayNumber = i;
+                headers.forEach((th, index) => {
+                    // El primer th es el nombre de columna "Técnico", los siguientes son los días
+                    if (index > 0) {
+                        const dayNumber = parseInt(th.innerText.trim());
                         if (dayNumber === currentDay) {
-                            const cell = cells[i];
-                            const originalText = cell.innerText.trim();
-                            // Solo si la celda tiene contenido (no está vacía)
-                            if (originalText && originalText !== '') {
-                                // Envolver el texto en un span con la clase today-number
-                                cell.innerHTML = `<span class="today-number">${originalText}</span>`;
-                            }
+                            // Reemplazar el contenido con el número envuelto en un span con círculo
+                            const originalText = th.innerText.trim();
+                            th.innerHTML = `<span class="today-header"><span>${originalText}</span></span>`;
                         }
                     }
                 });
@@ -373,7 +339,7 @@
     }
     
     // Ejecutar cuando la página termine de cargar
-    document.addEventListener('DOMContentLoaded', highlightTodayNumber);
+    document.addEventListener('DOMContentLoaded', highlightTodayHeader);
 </script>
     
 </body>
