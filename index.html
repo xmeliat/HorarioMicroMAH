@@ -76,6 +76,20 @@
         background-color: #fff176 !important;
         color: #b2bec3;
     }
+        /* Resaltado solo del número del día actual */
+    .today-number {
+        display: inline-block;
+        background-color: #f57f17;
+        color: white !important;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 7.5pt;
+        padding: 1px;
+    }
 </style>
 </head>
 <body>
@@ -304,21 +318,20 @@
 </div>
 
 <script>
-    // Función para resaltar el día actual
-    function highlightToday() {
+    // Función para resaltar solo el número del día actual
+    function highlightTodayNumber() {
         const today = new Date();
         const currentYear = today.getFullYear();
-        const currentMonth = today.getMonth(); // 0-11
+        const currentMonth = today.getMonth();
         const currentDay = today.getDate();
         
-        // Recorrer todos los meses en el calendario
+        const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 
+                            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        
         const monthBlocks = document.querySelectorAll('.month-block');
         
         monthBlocks.forEach(block => {
             const title = block.querySelector('h2').innerText;
-            // Extraer mes y año del título (ej: "Mayo 2026")
-            const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 
-                                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
             
             let blockMonth = null;
             let blockYear = null;
@@ -330,23 +343,28 @@
                 }
             }
             
-            // Extraer año (los últimos 4 dígitos)
             const yearMatch = title.match(/\d{4}/);
             if (yearMatch) {
                 blockYear = parseInt(yearMatch[0]);
             }
             
-            // Si el mes y año coinciden con hoy, buscar la celda del día
+            // Si es el mes y año actual
             if (blockMonth === currentMonth && blockYear === currentYear) {
                 const rows = block.querySelectorAll('tbody tr');
                 
                 rows.forEach(row => {
                     const cells = row.querySelectorAll('td');
-                    // La primera celda es el nombre del técnico, empezamos desde índice 1
+                    // Recorrer desde índice 1 (primer día del mes)
                     for (let i = 1; i < cells.length; i++) {
-                        const dayNumber = i; // el índice corresponde al día del mes
+                        const dayNumber = i;
                         if (dayNumber === currentDay) {
-                            cells[i].classList.add('today-cell');
+                            const cell = cells[i];
+                            const originalText = cell.innerText.trim();
+                            // Solo si la celda tiene contenido (no está vacía)
+                            if (originalText && originalText !== '') {
+                                // Envolver el texto en un span con la clase today-number
+                                cell.innerHTML = `<span class="today-number">${originalText}</span>`;
+                            }
                         }
                     }
                 });
@@ -355,7 +373,7 @@
     }
     
     // Ejecutar cuando la página termine de cargar
-    document.addEventListener('DOMContentLoaded', highlightToday);
+    document.addEventListener('DOMContentLoaded', highlightTodayNumber);
 </script>
     
 </body>
