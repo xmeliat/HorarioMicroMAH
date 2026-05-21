@@ -12,9 +12,14 @@
         margin-top: 15px; padding: 12px; background-color: #ffffff; 
         border-radius: 5px; color: #2c3e50; font-weight: bold; border: 1px solid #ddd;
     }
-    .legend-item { margin-right: 20px; }
-    .txt-f { color: #d63031; }
-    .txt-b { color: #b85c00; } /* color para la B en la leyenda */
+    .legend-item { margin-right: 20px; display: inline-block; }
+    
+    /* Colores para los textos de la leyenda */
+    .legend-m { color: #0d47a1; }
+    .legend-t { color: #2e7d32; }
+    .legend-v { color: #155724; }
+    .legend-f { color: #d63031; }
+    .legend-b { color: #e65100; }
     
     .month-block { 
         background: white; padding: 15px; border-radius: 8px; 
@@ -26,11 +31,12 @@
     th { background-color: #f8f9fa; }
     .name-col { width: 95px; text-align: left; padding-left: 8px; background-color: #34495e; color: white; font-weight: bold; }
     
-    .shift-M { background-color: #e3f2fd; color: #0d47a1; font-weight: bold; }
-    .shift-T { background-color: #fff3cd; color: #856404; font-weight: bold; }
-    .shift-V { background-color: #d4edda; color: #155724; font-weight: bold; }
-    .shift-F { background-color: #f8d7da; color: #d63031; font-weight: bold; }
-    .shift-B { background-color: #fff3b0; color: #b85c00; font-weight: bold; } /* baja amarillo */
+    /* Turnos con nuevos colores */
+    .shift-M { background-color: #e3f2fd; color: #0d47a1; font-weight: bold; }      /* Azul claro */
+    .shift-T { background-color: #c8e6c9; color: #2e7d32; font-weight: bold; }      /* Verde claro */
+    .shift-V { background-color: #d4edda; color: #155724; font-weight: bold; }      /* Verde vacaciones */
+    .shift-F { background-color: #f8d7da; color: #d63031; font-weight: bold; }      /* Rojo festivo */
+    .shift-B { background-color: #ffe0b2; color: #e65100; font-weight: bold; }      /* Naranja claro para baja */
     .weekend { background-color: #fafafa; color: #b2bec3; }
 </style>
 </head>
@@ -39,11 +45,11 @@
         <div class="header">
             <h1>Calendario de Turnos Microinformática MAH</h1>
             <div class="legend">
-                <span class="legend-item">M: Mañana (7-15h)</span>
-                <span class="legend-item">T: Tarde (14-22h)</span>
-                <span class="legend-item">V: Vacaciones</span>
-                <span class="legend-item txt-f">F: Festivo Local / Nacional</span>
-                <span class="legend-item txt-b">B: Baja (Amarillo)</span>
+                <span class="legend-item"><span class="legend-m">M: Mañana (7-15h)</span></span>
+                <span class="legend-item"><span class="legend-t">T: Tarde (14-22h)</span></span>
+                <span class="legend-item"><span class="legend-v">V: Vacaciones</span></span>
+                <span class="legend-item"><span class="legend-f">F: Festivo Local / Nacional</span></span>
+                <span class="legend-item"><span class="legend-b">B: Baja</span></span>
             </div>
         </div>
 
@@ -52,7 +58,7 @@
 <table>
 <thead><tr><th class="name-col">Técnico</th><th class="shift-F">1</th><th class="weekend">2</th><th class="weekend">3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th class="weekend">9</th><th class="weekend">10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th class="weekend">16</th><th class="weekend">17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th class="weekend">23</th><th class="weekend">24</th><th>25</th><th>26</th><th>27</th><th>28</th><th>29</th><th class="weekend">30</th><th class="weekend">31</th></tr></thead><tbody>
 <tr><td class="name-col">Xec</td><td class="shift-F">F</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-B">B</td><td class="weekend"></td><td class="weekend"></td></tr>
-<tr><td class="name-col">Francesc</td><td class="shift-F">F</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-T">T</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td></tr>
+<tr><td class="name-col">Francesc</td><td class="shift-F">F</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-T">T</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-T">T</td><td class="weekend"></td><td class="weekend"></td></tr>
 <tr><td class="name-col">Bis</td><td class="shift-F">F</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td></tr>
 </tbody></table></div>
 
@@ -60,7 +66,7 @@
 <div class="month-block"><h2>Junio 2026</h2>
 <table>
 <thead><tr><th class="name-col">Técnico</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th class="weekend">6</th><th class="weekend">7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th class="weekend">13</th><th class="weekend">14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th class="weekend">20</th><th class="weekend">21</th><th>22</th><th>23</th><th>24</th><th>25</th><th>26</th><th class="weekend">27</th><th class="weekend">28</th><th>29</th><th>30</th></tr></thead><tbody>
-<tr><td class="name-col">Xec</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="weekend"></td><td class="weekend"></td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="weekend"></td><td class="weekend"></td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="weekend"></td><td class="weekend"></td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="weekend"></td><td class="weekend"></td><td class="shift-B">B</td><td class="shift-B">B</td></tr>
+<tr><td class="name-col">Xec</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="weekend"></td><td class="weekend"></td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="weekend"></td><td class="weekend"></td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="weekend"></td><td class="weekend"></td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="shift-B">B</td><td class="weekend"></td><td class="weekend"></td><td class="shift-B">B</td><td class="shift-M">M</td></tr>
 <tr><td class="name-col">Francesc</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-T">T</td><td class="shift-T">T</td></tr>
 <tr><td class="name-col">Bis</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td></tr>
 </tbody></table></div>
@@ -249,13 +255,13 @@
 </tbody></table></div>
 
 <!-- ENERO 2027 -->
-<div class="month-block"><h2>Enero 2027</h2>
+<!-- <div class="month-block"><h2>Enero 2027</h2>
 <table>
 <thead><tr><th class="name-col">Técnico</th><th class="shift-F">1</th><th class="weekend">2</th><th class="weekend">3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th class="weekend">9</th><th class="weekend">10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th class="weekend">16</th><th class="weekend">17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th class="weekend">23</th><th class="weekend">24</th><th>25</th><th>26</th><th>27</th><th>28</th><th>29</th><th class="weekend">30</th><th class="weekend">31</th></tr></thead><tbody>
 <tr><td class="name-col">Xec</td><td class="shift-F">F</td><td class="weekend"></td><td class="weekend"></td><td class="shift-V">V</td><td class="shift-V">V</td><td class="shift-V">V</td><td class="shift-V">V</td><td class="shift-V">V</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M<td class="shift-M">M<td class="weekend"></td><td class="weekend"></td></tr>
 <tr><td class="name-col">Francesc</td><td class="shift-F">F</td><td class="weekend"></td><td class="weekend"></td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="weekend"></td><td class="weekend"></td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td></tr>
 <tr><td class="name-col">Bis</td><td class="shift-F">F</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="shift-M">M</td><td class="weekend"></td><td class="weekend"></td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="weekend"></td><td class="weekend"></td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="shift-T">T</td><td class="weekend"></td><td class="weekend"></td></tr>
-</tbody></table></div>
+</tbody></table></div> -->
 
 </div>
 </body>
