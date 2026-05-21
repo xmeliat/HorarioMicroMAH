@@ -38,6 +38,44 @@
     .shift-F { background-color: #f8d7da; color: #d63031; font-weight: bold; }      /* Rojo claro - Festivo */
     .shift-B { background-color: #ffb74d; color: #bf360c; font-weight: bold; }      /* Naranja intenso - Baja */
     .weekend { background-color: #fafafa; color: #b2bec3; }
+
+        /* Resaltado del día actual */
+    .today-cell {
+        background-color: #fff176 !important;
+        box-shadow: inset 0 0 0 2px #f57f17;
+        font-weight: bold;
+        position: relative;
+    }
+    
+    .today-cell.shift-M {
+        background-color: #fff176 !important;
+        color: #0d47a1;
+    }
+    
+    .today-cell.shift-T {
+        background-color: #fff176 !important;
+        color: #2e7d32;
+    }
+    
+    .today-cell.shift-V {
+        background-color: #fff176 !important;
+        color: #4a148c;
+    }
+    
+    .today-cell.shift-F {
+        background-color: #fff176 !important;
+        color: #d63031;
+    }
+    
+    .today-cell.shift-B {
+        background-color: #fff176 !important;
+        color: #bf360c;
+    }
+    
+    .today-cell.weekend {
+        background-color: #fff176 !important;
+        color: #b2bec3;
+    }
 </style>
 </head>
 <body>
@@ -264,5 +302,61 @@
 </tbody></table></div> -->
 
 </div>
+
+<script>
+    // Función para resaltar el día actual
+    function highlightToday() {
+        const today = new Date();
+        const currentYear = today.getFullYear();
+        const currentMonth = today.getMonth(); // 0-11
+        const currentDay = today.getDate();
+        
+        // Recorrer todos los meses en el calendario
+        const monthBlocks = document.querySelectorAll('.month-block');
+        
+        monthBlocks.forEach(block => {
+            const title = block.querySelector('h2').innerText;
+            // Extraer mes y año del título (ej: "Mayo 2026")
+            const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 
+                                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+            
+            let blockMonth = null;
+            let blockYear = null;
+            
+            for (let i = 0; i < monthNames.length; i++) {
+                if (title.includes(monthNames[i])) {
+                    blockMonth = i;
+                    break;
+                }
+            }
+            
+            // Extraer año (los últimos 4 dígitos)
+            const yearMatch = title.match(/\d{4}/);
+            if (yearMatch) {
+                blockYear = parseInt(yearMatch[0]);
+            }
+            
+            // Si el mes y año coinciden con hoy, buscar la celda del día
+            if (blockMonth === currentMonth && blockYear === currentYear) {
+                const rows = block.querySelectorAll('tbody tr');
+                
+                rows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    // La primera celda es el nombre del técnico, empezamos desde índice 1
+                    for (let i = 1; i < cells.length; i++) {
+                        const dayNumber = i; // el índice corresponde al día del mes
+                        if (dayNumber === currentDay) {
+                            cells[i].classList.add('today-cell');
+                        }
+                    }
+                });
+            }
+        });
+    }
+    
+    // Ejecutar cuando la página termine de cargar
+    document.addEventListener('DOMContentLoaded', highlightToday);
+</script>
+    
 </body>
 </html>
